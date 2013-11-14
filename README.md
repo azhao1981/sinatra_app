@@ -23,3 +23,9 @@ pry
 
 ```
 
+config:
+
+```
+ENV['RACK_ENV']    # env
+```
+

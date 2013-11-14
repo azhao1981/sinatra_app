@@ -1,11 +1,12 @@
 # encoding: UTF-8
-
+# use app name
+APP_NAME = "SINATRA_APP"
 USE_MEM_CACHE = true
 
 
 ENV['RACK_ENV'] ||= "development"
 
-ENV['BUNDLE_GEMFILE'] ||= ::File.expand_path('../Gemfile', __FILE__)
+ENV['BUNDLE_GEMFILE']   ||= ::File.expand_path('../Gemfile', __FILE__)
 require 'bundler/setup' if ::File.exists?(ENV['BUNDLE_GEMFILE'])
 ::Bundler.require(:default, ENV['RACK_ENV'])
 
@@ -13,17 +14,19 @@ ENV['APP_ROOT'] ||= ::File.expand_path(::File.dirname(__FILE__))
 ENV['LOG_PATH'] ||= ::File.expand_path(::File.join(ENV['APP_ROOT'],'log'))
 
 require 'sinatra'
+require 'sinatra/contrib/all'
 
 if development?
   puts ">> Development mode will reload change!!"
   use Rack::Reloader, 0
 end
 
-app_config_path  = ::File.expand_path("../config", __FILE__) + '/app_config.yml'
-APP_CONFIG = ::YAML.load_file(app_config_path)[ENV["RACK_ENV"]] if File.exists?(app_config_path)
-AUTOLOAD_PATHS = %w{lib models controllers helpers}
+app_config_path   = ::File.expand_path("../config", __FILE__) + '/app_config.yml'
+APP_CONFIG        = ::YAML.load_file(app_config_path)[ENV["RACK_ENV"]] if File.exists?(app_config_path)
+AUTOLOAD_PATHS    = %w{lib models controllers helpers}
 
 
+# logger config
 require 'logger'
 ::Dir.mkdir(ENV['LOG_PATH']) unless ::File.exist?(ENV['LOG_PATH'])
 class ::Logger; alias_method :write, :<<; end
@@ -191,14 +194,6 @@ configure :development do
   #set :logging,::Logger::DEBUG
 end
 
-
-# initialize json
-# require 'oj'
-# require 'yajl'
-# require 'active_support'
-# ActiveSupport::JSON::Encoding.escape_html_entities_in_json = true
-
-
 # initialize ActiveRecord
 require 'active_record'
 require "sinatra/activerecord"
@@ -220,7 +215,7 @@ if USE_MEM_CACHE
   require 'active_support/cache/dalli_store'
   Dalli.logger = $common_logger
   dalli_opts = {
-      :namespace => "ticket_event_api",
+      :namespace => APP_NAME,
       :compress => true,
       :expires_in => 15.minute
   }

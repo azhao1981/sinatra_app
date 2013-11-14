@@ -3,3 +3,7 @@ pkg
 *.lock
 log/*
 tmp/*
+# for template
+database.yml
+app_config.yml
+rainbows.rb
