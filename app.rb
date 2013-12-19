@@ -69,7 +69,7 @@ before do
     s = ""
     s << "\n"
     s << "Processing #{request.path} (for #{request.ip} at #{Time.new.strftime("%Y-%m-%d %H:%M:%S")}) [#{request.request_method}]"
-    s << "\nURL: #{request.url}"
+    s << "\nURL: #{request.url.force_encoding("UTF-8")}"
     s << "\nParameters: #{params}" if params
     s << "\n"
     logger << s
