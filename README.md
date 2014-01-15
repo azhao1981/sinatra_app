@@ -8,19 +8,28 @@ Usage:
 
 service:
 
+listen port is in config/rainbows.rb
+
 ```
 ./service start
 
 ./service stop
 
 ./service restart
+
+./service reload
 ```
 
 console:
 
 ```
-pry
+bundle exec pry
+> reload!
 
+```
+
+```
+bundle exec rake hello
 ```
 
 config:
