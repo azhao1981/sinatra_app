@@ -4,6 +4,9 @@ require 'fileutils'
 require 'zip/zipfilesystem'
 require "sinatra/activerecord/rake"
 
+# load tasks file
+Dir.glob('lib/tasks/*.rake').each { |r| load r}
+
 Rake::TestTask.new do |t|
   t.libs.push("./")
   t.test_files = FileList['tests/*.rb']

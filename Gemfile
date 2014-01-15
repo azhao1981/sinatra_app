@@ -1,6 +1,8 @@
 # source "https://rubygems.org"
 source "http://ruby.taobao.org"
 
+gem 'rake'
+gem 'zip'
 gem 'rack'
 gem 'sinatra'
 gem 'sinatra-contrib'
@@ -9,11 +11,9 @@ gem 'sinatra-contrib'
 gem 'activerecord'
 gem 'activesupport'
 gem "sinatra-activerecord"
+
 # helpfully gem 
 gem 'second_level_cache'
-
-# need composite primary keys?
-# gem 'composite_primary_keys'
 
 gem 'pg'
 

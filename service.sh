@@ -10,8 +10,8 @@ pid="log/rainbows.pid"
 
 case "$1" in
   start)
-    bundle exec rainbows -c config/rainbows.rb -E production -D
-    #bundle exec rainbows -c config/rainbows.rb -E development -D
+    #bundle exec rainbows -c config/rainbows.rb -E production -D
+    bundle exec rainbows -c config/rainbows.rb -E development -D
     ;;
   stop)
     kill -QUIT `cat $pid`
